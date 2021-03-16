@@ -1,1 +1,1 @@
-worker: java -cp WooBot.main -DbotToken="ODAyNTEwNjU2MzgwMDc2MDMy.YAwSSg.gzYSLmg1r3F3rxzUCmsILdo5VFU" -DmongoUri="mongodb+srv://AlfaOmega:VMt%21Ry06Cu816%26%25T@botdatabase.gk5p8.mongodb.net/Alfa_Omega_Info?retryWrites=true&w=majority" -jar build/libs/WooBot-1.0.jar
+worker: java -cp WooBot.main -DbotToken="ODAyNTEwNjU2MzgwMDc2MDMy.YAwSSg.gzYSLmg1r3F3rxzUCmsILdo5VFU" -DmongoUri="mongodb+srv://AlfaOmega:VMt%21Ry06Cu816%26%25T@botdatabase.gk5p8.mongodb.net/Alfa_Omega_Info?retryWrites=true&w=majority" -jar build/libs/*.jar
