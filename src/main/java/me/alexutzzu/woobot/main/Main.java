@@ -39,7 +39,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 
 public class Main{
-    private static final ConnectionString connectionString = new ConnectionString(System.getProperty("mongoUri"));
+    private static final ConnectionString connectionString = new ConnectionString(System.getenv("DATABASE_URI"));
     private static final CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
     private static final CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
     private static final MongoClientSettings clientSettings = MongoClientSettings.builder().applyConnectionString(connectionString).codecRegistry(codecRegistry).build();
@@ -48,7 +48,7 @@ public class Main{
 
 
     public static void main(String[] arguments) throws Exception{
-        JDA api = JDABuilder.createDefault(System.getProperty("botToken"), (EnumSet.of(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS))).disableCache(CacheFlag.VOICE_STATE, CacheFlag.EMOTE).enableCache(CacheFlag.MEMBER_OVERRIDES).build();
+        JDA api = JDABuilder.createDefault(System.getenv("BOT_TOKEN"), (EnumSet.of(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS))).disableCache(CacheFlag.VOICE_STATE, CacheFlag.EMOTE).enableCache(CacheFlag.MEMBER_OVERRIDES).build();
         api.addEventListener(new GuildSetup(mongoDatabase), new WelcomeEvent(mongoDatabase), new DeleteEntries(mongoDatabase));
         EventWaiter eventWaiter = new EventWaiter();
 
