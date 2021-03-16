@@ -4,7 +4,7 @@ plugins {
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-mainClassName = 'me.alexutzzu.botdiscord.main.Main'
+mainClassName = 'me.alexutzzu.woobot.main.Main'
 
 version '1.0'
 def jdaVersion = '4.2.0_227'
