@@ -35,7 +35,7 @@ public class NewTicket extends Command implements AdditionalMethods {
         this.eventWaiter = eventWaiter;
         this.category = new Support();
         this.mongoDatabase = mongoDatabase;
-        this.cooldown = 15;
+        this.cooldown = 300;
         this.name = "open";
         this.aliases = new String[]{"new"};
         this.botPermissions = new Permission[]{Permission.MESSAGE_MANAGE, Permission.MANAGE_CHANNEL};
@@ -51,7 +51,6 @@ public class NewTicket extends Command implements AdditionalMethods {
 
     @Override
     protected void execute(CommandEvent event) {
-        MongoCollection<GuildTicket> guildTickets = mongoDatabase.getCollection("Guild Tickets", GuildTicket.class);
         GuildSettings guildSettings = event.getClient().getSettingsFor(event.getGuild());
         if (guildSettings.getTicketSettings().getSupportTeamRoleID()==null || guildSettings.getTicketSettings().getSupportCategoryID()==null){
             event.getMessage().delete().queue();

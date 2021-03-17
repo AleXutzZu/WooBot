@@ -2,8 +2,8 @@ package me.alexutzzu.woobot.commands.misc;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import me.alexutzzu.woobot.utils.categories.Misc;
 import me.alexutzzu.woobot.utils.addons.AdditionalMethods;
+import me.alexutzzu.woobot.utils.categories.Misc;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 import java.awt.*;

@@ -4,8 +4,8 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.mongodb.client.MongoDatabase;
-import me.alexutzzu.woobot.utils.categories.Setup;
 import me.alexutzzu.woobot.utils.addons.AdditionalMethods;
+import me.alexutzzu.woobot.utils.categories.Setup;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
