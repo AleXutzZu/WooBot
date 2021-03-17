@@ -5,8 +5,11 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import me.alexutzzu.woobot.utils.addons.AdditionalMethods;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
+
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class HelpCommand extends Command implements AdditionalMethods {
     public HelpCommand(){
