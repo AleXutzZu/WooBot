@@ -3,8 +3,7 @@ package me.alexutzzu.woobot.events;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.FindOneAndReplaceOptions;
-import com.mongodb.client.model.ReturnDocument;
+import me.alexutzzu.woobot.utils.constants.Links;
 import me.alexutzzu.woobot.utils.pojos.guild.GuildSettings;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -25,13 +24,8 @@ public class GuildSetup extends ListenerAdapter {
     public void onGuildJoin(GuildJoinEvent event){
         Guild guild = event.getGuild();
         TextChannel channel = guild.getDefaultChannel();
-        GuildSettings newGuild = new GuildSettings(guild.getId());
         EmbedBuilder eb = new EmbedBuilder();
-        MongoCollection<GuildSettings> guildInformation = mongoDatabase.getCollection("Guild Information", GuildSettings.class);
-        FindOneAndReplaceOptions options = new FindOneAndReplaceOptions().upsert(true).returnDocument(ReturnDocument.AFTER);
-        Bson query = Filters.eq("guildID", guild.getId());
-
-        GuildSettings guildSettings = guildInformation.findOneAndReplace(query, newGuild, options);
+        GuildSettings guildSettings = createSettings(guild.getId());
 
         eb.setColor(Color.RED);
         eb.setTitle("Thanks for inviting me!");
@@ -39,7 +33,25 @@ public class GuildSetup extends ListenerAdapter {
                 "some useful commands.");
         eb.addField("Default Prefix", guildSettings.getGeneralSettings().getCommandPrefix(), true);
         eb.addField("Need help?", "Use `" + guildSettings.getGeneralSettings().getCommandPrefix() + "help`", true);
-        eb.addField("Support the Developer", "not yet", true);
-        channel.sendMessage(eb.build()).queue();
+        eb.addField("Join our Support Server","Need even more help? We're happy to help! You can join [here](" + Links.SUPPORT_SERVER.getLink()+")", true);
+        eb.addField("Visit our Official Website","Gain full control over your bot from the web! No need for commands." + Links.CONTROL_PANEL.getLink(), true);
+        if (channel!=null){
+            channel.sendMessage(eb.build()).queue();
+        }
+    }
+    private GuildSettings createSettings(String guildID){
+        MongoCollection<GuildSettings> guildInformation = mongoDatabase.getCollection("Guild Information", GuildSettings.class);
+        Bson query = Filters.eq("guildID", guildID);
+        GuildSettings guildSettings = guildInformation.find(query).first();
+        if (guildSettings==null){
+            GuildSettings settings = new GuildSettings(guildID);
+            guildInformation.insertOne(settings);
+            return settings;
+        }else{
+            guildInformation.deleteMany(query);
+            GuildSettings settings = new GuildSettings(guildID);
+            guildInformation.insertOne(settings);
+            return settings;
+        }
     }
 }
