@@ -31,7 +31,6 @@ public class GuildSetup extends ListenerAdapter {
         eb.setTitle("Thanks for inviting me!");
         eb.setDescription("I am " + event.getJDA().getSelfUser().getName() + "! I am a moderation and Support bot with " +
                 "some useful commands.");
-        eb.addField("Default Prefix", guildSettings.getGeneralSettings().getCommandPrefix(), true);
         eb.addField("Need help?", "Use `" + guildSettings.getGeneralSettings().getCommandPrefix() + "help`", true);
         eb.addField("Join our Support Server","Need even more help? We're happy to help! You can join [here](" + Links.SUPPORT_SERVER.getLink()+")", true);
         eb.addField("Visit our Official Website","Gain full control over your bot from the web! No need for commands." + Links.CONTROL_PANEL.getLink(), true);
