@@ -23,6 +23,7 @@ import me.alexutzzu.woobot.events.DeleteEntries;
 import me.alexutzzu.woobot.events.GuildSetup;
 import me.alexutzzu.woobot.events.WelcomeEvent;
 import me.alexutzzu.woobot.utils.constants.Emoji;
+import me.alexutzzu.woobot.utils.constants.Links;
 import me.alexutzzu.woobot.utils.pojos.GuildData;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -62,7 +63,7 @@ public class Main{
         );
 
         builder.addCommand(new HelpCommand());
-        builder.setServerInvite("https://discord.gg/YxJVWhEEUw");
+        builder.setServerInvite(Links.SUPPORT_SERVER.getLink());
         builder.setGuildSettingsManager(new GuildData(mongoDatabase));
         builder.setOwnerId("236873496939069443");
         builder.setPrefix(" ");
