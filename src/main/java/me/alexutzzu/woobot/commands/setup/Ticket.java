@@ -103,6 +103,7 @@ public class Ticket extends Command implements AdditionalMethods {
            if (supportRole!=null){
                event.replySuccess("**ROLE** Found role " + supportRole.getAsMention());
                //update db
+               guildInformation.updateOne(query, Updates.set("ticketSettings.supportTeamRoleID", supportRole.getId()));
                executeSetup(botRole, supportRole, supportCategory, event);
            }else{
                event.replyWarning("**ROLE** Not found. Creating new one..");
